@@ -4,7 +4,7 @@ function Color(r, g, b, a) {
   this.r = r % 256 || 0;
   this.g = g % 256 || 0;
   this.b = b % 256 || 0;
-  this.a = a % 256 || 0;
+  this.a = a % 256 || 1;
 
   var num2Hex = function num2Hex(e) {
     return (e > 15 ? '' : '0') + e.toString(16);
@@ -44,7 +44,7 @@ function Color(r, g, b, a) {
       s = (max - min) / (2 - (max + min));
     }
 
-    h = Math.round(h);
+    h = Math.round(h) % 360;
     s = Math.round(s * 100);
     l = Math.round(l * 100);
 
