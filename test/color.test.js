@@ -62,7 +62,7 @@ describe("Color", function () {
     it("should receive from hsl to rgb", function () {
       var c = new Color();
 
-      assert.equal(c.setFromHSL({H: 210, S: 0.48, L: 0.09}).toRGBString(), "rgb(12, 23, 34)")
+      assert.equal(c.setFromHSL({H: 210, S: 48, L: 9}).toRGBString(), "rgb(12, 23, 34)")
     })
 
     it("should set hsl black to rgb", function () {
@@ -74,14 +74,14 @@ describe("Color", function () {
     it("should set h 0 color to rgb", function () {
       var c = new Color();
 
-      assert.equal(c.setFromHSL({H: 0, S: 0.55, L: 0.88}).toRGBString(), "rgb(241, 208, 208)")
+      assert.equal(c.setFromHSL({H: 0, S: 55, L: 88}).toRGBString(), "rgb(241, 208, 208)")
     })
 
 
     it("should set hsl nealy white to rgb", function () {
       var c = new Color();
 
-      assert.equal(c.setFromHSL({H: 254, S: 0.99, L: 0.99}).toRGBString(), "rgb(251, 250, 255)")
+      assert.equal(c.setFromHSL({H: 254, S: 99, L: 99}).toRGBString(), "rgb(251, 250, 255)")
     })
 
     it("should receive from hex to rgb", function () {
