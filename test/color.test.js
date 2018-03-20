@@ -36,7 +36,7 @@ describe("Color", function () {
     it("three same color should work", function () {
       var c = new Color(122, 122, 122);
 
-      assert.equal(c.toRGBString(), "rgb(122, 122, 122)")
+      assert.equal(c.toHSLString(), "hsl(0, 0%, 48%)")
     })
 
     it("one color full should work r", function () {
@@ -70,6 +70,13 @@ describe("Color", function () {
 
       assert.equal(c.setFromHSL({H: 0, S: 0, L: 0}).toRGBString(), "rgb(0, 0, 0)")
     })
+
+    it("should set h 0 color to rgb", function () {
+      var c = new Color();
+
+      assert.equal(c.setFromHSL({H: 0, S: 0.55, L: 0.88}).toRGBString(), "rgb(241, 208, 208)")
+    })
+
 
     it("should set hsl nealy white to rgb", function () {
       var c = new Color();
