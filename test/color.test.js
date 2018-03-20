@@ -26,6 +26,38 @@ describe("Color", function () {
     })
   })
 
+  describe("basic color branch", function () {
+    it("default value", function () {
+      var c = new Color();
+
+      assert.equal(c.toRGBAString(), "rgba(0, 0, 0, 1)")
+    })
+
+    it("three same color should work", function () {
+      var c = new Color(122, 122, 122);
+
+      assert.equal(c.toRGBString(), "rgb(122, 122, 122)")
+    })
+
+    it("one color full should work r", function () {
+      var c = new Color(255, 1, 1);
+
+      assert.equal(c.toHSLString(), "hsl(0, 100%, 50%)")
+    })
+
+    it("one color full should work g", function () {
+      var c = new Color(1, 255, 1);
+
+      assert.equal(c.toHSLString(), "hsl(120, 100%, 50%)")
+    })
+
+    it("one color full should work b", function () {
+      var c = new Color(1, 1, 255);
+
+      assert.equal(c.toHSLString(), "hsl(240, 100%, 50%)")
+    })
+  })
+
   describe("set from other format", function () {
     it("should receive from hsl to rgb", function () {
       var c = new Color();
