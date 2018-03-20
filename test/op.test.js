@@ -27,5 +27,11 @@ describe("Operation", function () {
 
       assert(op.fade(c, 50).toRGBString(), "rgb(94, 113, 151)")
     })
+
+    it("should fill optional percentage", function () {
+      var c = new Color(66, 104, 179)
+
+      assert(op.fade(c).toRGBString(), "rgb(94, 113, 151)")
+    })
   })
 })
