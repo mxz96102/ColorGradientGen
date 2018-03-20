@@ -1,0 +1,16 @@
+{
+  "name": "color_gradient_gen",
+  "version": "0.1.0",
+  "description": "color gradient alg test.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "color",
+    "gradient",
+    "js"
+  ],
+  "author": "Dominic Ming",
+  "license": "MIT"
+}
