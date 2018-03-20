@@ -1,2 +1,5 @@
 .idea
 coverage
+.cache
+.nyc_output
+display
