@@ -14,24 +14,24 @@ function Color(r, g, b, a) {
     return 'rgb(' + _this.r + ', ' + _this.g + ', ' + _this.b + ')';
   };
   this.toRGBAString = function () {
-    return 'rgb(' + _this.r + ', ' + _this.g + ', ' + _this.b + ', ' + _this.a + ')';
+    return 'rgba(' + _this.r + ', ' + _this.g + ', ' + _this.b + ', ' + _this.a + ')';
   };
   this.toHexString = function () {
     return '#' + num2Hex(_this.r) + num2Hex(_this.g) + num2Hex(_this.b);
   };
   this.toHSL = function () {
-    var max = Math.max(_this.r, _this.g, _this.b);
-    var min = Math.min(_this.r, _this.g, _this.b);
+    var max = Math.max(_this.r, _this.g, _this.b) / 255;
+    var min = Math.min(_this.r, _this.g, _this.b) / 255;
     var h, s, l;
 
     if (max === min) {
       h = 0;
-    } else if (max === _this.r) {
-      h = 60 * ((_this.g - _this.b) / (max - min)) + (_this.g < _this.b ? 0 : 360);
-    } else if (max === _this.g) {
-      h = 60 * ((_this.b - _this.r) / (max - min)) + 120;
-    } else if (max === b) {
-      h = 60 * ((_this.r - _this.g) / (max - min)) + 240;
+    } else if (max * 255 === _this.r) {
+      h = 60 * ((_this.g - _this.b) / 255 / (max - min)) + (_this.g < _this.b ? 0 : 360);
+    } else if (max * 255 === _this.g) {
+      h = 60 * ((_this.b - _this.r) / 255 / (max - min)) + 120;
+    } else if (max * 255 === b) {
+      h = 60 * ((_this.r - _this.g) / 255 / (max - min)) + 240;
     }
 
     l = 0.5 * (max + min);
@@ -41,7 +41,7 @@ function Color(r, g, b, a) {
     } else if (0 < l && l <= 0.5) {
       s = (max - min) / (max + min);
     } else if (l > 0.5) {
-      s = (max - min) / (2 - (max - min));
+      s = (max - min) / (2 - (max + min));
     }
 
     h = Math.round(h);
@@ -51,14 +51,25 @@ function Color(r, g, b, a) {
     return { H: h, S: s, L: l };
   };
 
+  this.toHSLString = function () {
+    var hsl = _this.toHSL();
+    return 'hsl(' + hsl.H + ', ' + hsl.S + '%, ' + hsl.L + '%)';
+  }
+
+  this.toHSLAString = function () {
+    var hsl = _this.toHSL();
+    return 'hsla(' + hsl.H + ', ' + hsl.S + '%, ' + hsl.L + '%, ' + _this.a + ')';
+  }
+
   this.setFromHex = function (s) {
-    _this.r = +(s[1]+s[2]);
-    _this.g = +(s[3]+s[4]);
-    _this.b = +(s[5]+s[6]);
+    _this.r = parseInt((s[1]+s[2]), 16);
+    _this.g = parseInt((s[3]+s[4]), 16);
+    _this.b = parseInt((s[5]+s[6]), 16);
+    return _this;
   };
 
   this.setFromHSL = function(hsl) {
-    var h = hsl.h, s = hsl.s, l = hsl.l;
+    var h = hsl.H, s = hsl.S, l = hsl.L;
 
     function fixRGB(n, p ,q) {
       var color;
@@ -76,24 +87,22 @@ function Color(r, g, b, a) {
       else
         color = p;
 
-      return Math.floor( color * 255 )
+      return Math.round( color * 255 )
     }
 
     if ( s === 0 ) {
       _this.r = _this.g = _this.b = l;
-    }else {
+    } else {
       var q = l < 0.5 ? l * ( 1 + s ) : l + s - ( l * s );
       var p = 2 * l - q;
-      _this.r = fixRGB(h + 1 / 3, p, q);
+      h = h / 360;
+      _this.r = fixRGB(h + (1 / 3), p, q);
       _this.g = fixRGB(h, p, q);
-      _this.b = fixRGB( h - 1 / 3, p, q);
+      _this.b = fixRGB(h - (1 / 3), p, q);
     }
+
+    return _this
   }
 }
 
 exports = module.exports = Color;
-
-var color = new Color(66, 133, 244, 1);
-
-console.log(color.toHSL())
-
