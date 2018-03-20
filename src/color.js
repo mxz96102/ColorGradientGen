@@ -30,7 +30,7 @@ function Color(r, g, b, a) {
       h = 60 * ((_this.g - _this.b) / 255 / (max - min)) + (_this.g < _this.b ? 0 : 360);
     } else if (max * 255 === _this.g) {
       h = 60 * ((_this.b - _this.r) / 255 / (max - min)) + 120;
-    } else if (max * 255 === b) {
+    } else if (max * 255 === _this.b) {
       h = 60 * ((_this.r - _this.g) / 255 / (max - min)) + 240;
     }
 
@@ -69,7 +69,7 @@ function Color(r, g, b, a) {
   };
 
   this.setFromHSL = function(hsl) {
-    var h = hsl.H, s = hsl.S, l = hsl.L;
+    var h = hsl.H, s = hsl.S / 100, l = hsl.L / 100;
 
     function fixRGB(n, p ,q) {
       var color;
