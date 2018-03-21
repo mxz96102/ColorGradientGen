@@ -41,14 +41,6 @@ function fade(color, percentage) {
   return hslMinus(color, percentage, "S")
 }
 
-function complementary(color) {
-  var hsl = color.toHSL();
-  hsl.H = 360 - hsl.H ;
-  var c = new Color();
-
-  return c.setFromHSL(hsl);
-}
-
 function angleAhead(color, delta) {
   var hsl = color.toHSL();
   console.log(hsl)
@@ -58,6 +50,10 @@ function angleAhead(color, delta) {
   console.log((hsl.H - delta + 360) % 360, hsl.H)
 
   return c.setFromHSL(hsl);
+}
+
+function complementary(color) {
+  return angleAhead(color, 180)
 }
 
 function nearByA(color) {
@@ -77,4 +73,5 @@ module.exports = {
   nearByB: nearByB,
   complementary: complementary
 }
+
 exports = module.exports
