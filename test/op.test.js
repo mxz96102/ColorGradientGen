@@ -4,34 +4,38 @@ var assert = require('assert');
 
 describe("Operation", function () {
   describe("basic test", function () {
-    it("should be lighter", function () {
-      var c = new Color(66, 104, 179)
+    var c = new Color(66, 104, 179)
 
+    it("should be lighter", function () {
       assert(op.lighter(c, 50).toRGBString(), "rgb(158, 180, 219)")
     })
 
     it("should be darker", function () {
-      var c = new Color(66, 104, 179)
-
       assert(op.darker(c, 50).toRGBString(), "rgb(33, 52, 89)")
     })
 
     it("should be colorful", function () {
-      var c = new Color(66, 104, 179)
-
       assert(op.colorful(c, 50).toRGBString(), "rgb(33, 93, 212)")
     })
 
     it("should be fade", function () {
-      var c = new Color(66, 104, 179)
-
       assert(op.fade(c, 50).toRGBString(), "rgb(94, 113, 151)")
     })
 
     it("should fill optional percentage", function () {
-      var c = new Color(66, 104, 179)
-
       assert(op.fade(c).toRGBString(), "rgb(94, 113, 151)")
+    })
+
+    it("should get complementary color", function () {
+      assert(op.complementary(c).toRGBString(), "rgb(158, 240, 222)")
+    })
+
+    it("should get a 120 deg ahead color", function () {
+      assert(op.nearByA(c).toRGBString(), "rgb(174, 240, 158)")
+    })
+
+    it("should get a 240 deg ahead color", function () {
+      assert(op.nearByB(c).toRGBString(), "rgb(158, 174, 240)")
     })
   })
 })
