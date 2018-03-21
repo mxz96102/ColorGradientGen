@@ -43,11 +43,8 @@ function fade(color, percentage) {
 
 function angleAhead(color, delta) {
   var hsl = color.toHSL();
-  console.log(hsl)
   hsl.H = (hsl.H + delta) % 360 ;
   var c = new Color();
-
-  console.log((hsl.H - delta + 360) % 360, hsl.H)
 
   return c.setFromHSL(hsl);
 }
