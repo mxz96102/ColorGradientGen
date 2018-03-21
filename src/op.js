@@ -1,5 +1,7 @@
+var Color = require("./color");
+
 function minus(e, p) {
-  return e - e * p;
+  return e * (1 - p);
 }
 
 function plus(e, p) {
@@ -10,9 +12,9 @@ function hslChange(color, percentage, key, cal) {
   var hsl = color.toHSL();
   var p = Math.abs(percentage) || 0.5;
   hsl[key] = cal(hsl[key], p);
+  var c = new Color();
 
-  color.setFromHSL(hsl);
-  return color;
+  return c.setFromHSL(hsl);
 }
 
 function hslMinus(color, percentage, key) {
@@ -39,10 +41,40 @@ function fade(color, percentage) {
   return hslMinus(color, percentage, "S")
 }
 
+function complementary(color) {
+  var hsl = color.toHSL();
+  hsl.H = 360 - hsl.H ;
+  var c = new Color();
+
+  return c.setFromHSL(hsl);
+}
+
+function angleAhead(color, delta) {
+  var hsl = color.toHSL();
+  console.log(hsl)
+  hsl.H = (hsl.H + delta) % 360 ;
+  var c = new Color();
+
+  console.log((hsl.H - delta + 360) % 360, hsl.H)
+
+  return c.setFromHSL(hsl);
+}
+
+function nearByA(color) {
+  return angleAhead(color, 120)
+}
+
+function nearByB(color) {
+  return angleAhead(color, 240)
+}
+
 module.exports = {
   lighter: lighter,
   darker: darker,
   colorful: colorful,
-  fade: fade
+  fade: fade,
+  nearByA: nearByA,
+  nearByB: nearByB,
+  complementary: complementary
 }
 exports = module.exports
