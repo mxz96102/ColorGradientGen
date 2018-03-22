@@ -68,7 +68,8 @@ module.exports = {
   fade: fade,
   nearByA: nearByA,
   nearByB: nearByB,
-  complementary: complementary
+  complementary: complementary,
+  angleAhead: angleAhead
 }
 
 exports = module.exports
