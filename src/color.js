@@ -103,6 +103,11 @@ function Color(r, g, b, a) {
 
     return _this
   }
+
+  this.setRandomColor = function() {
+    _this.setFromHex('#' + ('000000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6))
+    return _this
+  }
 }
 
 exports = module.exports = Color;
