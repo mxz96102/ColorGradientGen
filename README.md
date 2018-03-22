@@ -5,7 +5,7 @@
 > It's a js color to make gradient color.
 > version 0.1.0
 
-simple is in ![color.hustfe.com](color.hustfe.com)
+simple is in [color.hustfe.com](http://color.hustfe.com)
 
 ## How to Use
 
