@@ -89,5 +89,11 @@ describe("Color", function () {
 
       assert.equal(c.setFromHex("#0c1722").toRGBString(), "rgb(12, 23, 34)")
     })
+
+    it("should set random color", function () {
+      var c = new Color(NaN, NaN, NaN), a = new Color(NaN, NaN, NaN);
+
+      assert.notEqual(c.setRandomColor().toRGBString(), a.toRGBString())
+    })
   })
 })

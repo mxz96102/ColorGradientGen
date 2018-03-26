@@ -38,4 +38,20 @@ describe("Operation", function () {
       assert(op.nearByB(c).toRGBString(), "rgb(158, 174, 240)")
     })
   })
+
+  describe("multi operation", function () {
+    var c = new Color(66, 104, 179)
+
+    it("shuold do the same thing", function () {
+      assert(op.nearByA(op.darker(op.fade(c))).toRGBString(), op.multiOperation(c, [op.fade, op.darker, op.nearByA]).toRGBString())
+    })
+
+    it("shuold do the same thing with num", function () {
+      assert(op.nearByA(op.darker(op.fade(c, 10), 20), 30).toRGBString(), op.multiOperation(c, [[op.fade, 10], [op.darker, 20], [op.nearByA, 30]]).toRGBString())
+    })
+
+    it("shuold do the same thing with num or not", function () {
+      assert(op.nearByA(op.darker(op.fade(c, 10), 20), 30).toRGBString(), op.multiOperation(c, [[op.fade, 10], op.darker, [op.nearByA, 30]]).toRGBString())
+    })
+  })
 })
