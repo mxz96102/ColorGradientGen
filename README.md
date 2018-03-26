@@ -1,6 +1,6 @@
 # Gradient Color Tool
 [![Build Status](https://travis-ci.org/mxz96102/ColorGradientGen.svg?branch=master)](https://travis-ci.org/mxz96102/color_gradient_gen)
-[![Coverage Status](https://coveralls.io/repos/github/mxz96102/color_gradient_gen/badge.svg?branch=master)](https://coveralls.io/github/mxz96102/color_gradient_gen?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mxz96102/ColorGradientGen/badge.svg?branch=master)](https://coveralls.io/github/mxz96102/color_gradient_gen?branch=master)
 
 > It's a js color to make gradient color.
 > version 0.1.0
@@ -58,6 +58,7 @@ op is a tool set to change color by exact way
 |nearByA|(color: Color)| Color(different) | make color to next field|
 |nearByB|(color: Color)| Color(different) | make color to last field|
 |complementary|(color: Color)| Color(different) | make color into complementary color|
+|multiOperation|(color: Color, opList: arr(filled with op function or [function, num] arr))| do multi operation the same function|
 
 ## TODO List
 - gradient function module
