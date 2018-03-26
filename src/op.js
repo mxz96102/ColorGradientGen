@@ -61,6 +61,16 @@ function nearByB(color) {
   return angleAhead(color, 240)
 }
 
+function multiOperation(color, operations) {
+  var tmp = color;
+
+  operations.map(function (e) {
+    tmp = e[1] ? e[0](tmp, e[1]) : e(tmp)
+  })
+
+  return tmp;
+}
+
 module.exports = {
   lighter: lighter,
   darker: darker,
@@ -69,7 +79,8 @@ module.exports = {
   nearByA: nearByA,
   nearByB: nearByB,
   complementary: complementary,
-  angleAhead: angleAhead
+  angleAhead: angleAhead,
+  multiOperation: multiOperation
 }
 
 exports = module.exports
